@@ -1,0 +1,73 @@
+// تحديد الرابط النشط في القائمة
+
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".navbar a").forEach(function(link) {
+
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+        link.classList.add("active");
+    }
+
+});
+
+
+// التحقق من نموذج التسجيل
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+
+    registerForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const password = document.getElementById("password").value;
+
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        const message = document.getElementById("registerMessage");
+
+        if (password !== confirmPassword) {
+
+            message.textContent = "كلمتا المرور غير متطابقتين.";
+
+            message.style.color = "red";
+
+            return;
+
+        }
+
+        message.textContent = "تم التحقق من البيانات بنجاح. هذا نموذج تجريبي.";
+
+        message.style.color = "green";
+
+        registerForm.reset();
+
+    });
+
+}
+
+
+// التحقق من نموذج التواصل
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const message = document.getElementById("contactMessage");
+
+        message.textContent = "تم التحقق من الرسالة. هذا نموذج تجريبي ولا يرسل الرسالة فعلياً.";
+
+        message.style.color = "green";
+
+        contactForm.reset();
+
+    });
+
+}
